@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>carta de san valentín ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .corazones span {
+      position: absolute;
+      color: rgba(255,255,255,0.7);
+      font-size: 20px;
+      animation: flotar 10s linear infinite;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .carta {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: aparecer 1.5s ease;
+      box-shadow: #333;
+    }
+
+    @keyframes aparecer {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #333;
+      font-size: 16px;
+      min-height: 120px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e63956;
+      transform: scale(1.1);
+    }
+
+    .firma {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff4d6d;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="corazones" id="corazones"></div>
+
+  <div class="carta">
+    <h1>para ti ❤️</h1>
+    <p id="mensaje"></p>
+    <button onclick="mostrarMensaje()">Abrir mi corazón</button>
+    <div class="firma" id="firma"></div>
+  </div>
+
+  <script>
+   const texto = `Sofi
+
+    Desde que llegaste a mi vida, todo empezó a tener un brillo diferente. no sé exactamente en qué momento pasó, pero poco a poco te convertiste en esa persona que ocupa mis pensamientos, mis sonrisas y hasta mis sueños. hay algo en ti que me transmite paz, alegría y una felicidad que no se puede explicar fácilmente con palabras
+    
+    me encanta tu forma de ser la que siempre esta conmigo en cualquier situación la amo con todo mi corazon, contigo entendí que el amor no es algo complicado, sino algo que se siente natural, bonito y sincero. cada conversación contigo se vuelve especial, cada risa y cada momento a tu lado se convierte en un recuerdo que quiero repetir mil veces más.
+    
+    gracias por existir sofi. No sabes cuánto valoro tenerte en mi vida. haces que mis días sean más lindos y que incluso los momentos difíciles se sienten mejor.
+
+    si pudiera prometerte algo, sería cuidar siempre lo que siento por ti, respetarte, apoyarte y estar para ti cuando lo necesites. porque lo que siento no es pasajero, es algo que nace desde lo más sincero de mi corazón.
+    
+    sofi, eres esa persona que llegó sin hacer ruido… y eres y seras el amor mas bonito que tendre en esta vida gracias. 💖`;
+
+    let i = 0;
+
+    function mostrarMensaje() {
+      const mensaje = document.getElementById("mensaje");
+      const firma = document.getElementById("firma");
+      mensaje.innerHTML = "";
+      firma.innerHTML = "";
+      i = 0;
+
+      const intervalo = setInterval(() => {
+        if (i < texto.length) {
+          mensaje.innerHTML += texto.charAt(i);
+          i++;
+        } else {
+          clearInterval(intervalo);
+          firma.innerHTML = "Con amor, tu Santi ❤️";
+        }
+      }, 50);
+    }
+
+    function crearCorazon() {
+      const corazon = document.createElement("span");
+      corazon.innerHTML = "💖";
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.fontSize = Math.random() * 30 + 20 + "px";
+      corazon.style.animationDuration = Math.random() * 5 + 5 + "s";
+      document.getElementById("corazones").appendChild(corazon);
+
+      setTimeout(() => {
+        corazon.remove();
+      }, 10000);
+    }
+
+    setInterval(crearCorazon, 500);
+  </script>
+
+  <style>
+    .galeria {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .galeria img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+
+  <script>
+  
+    const fotos = [
+      "foto1.png",
+      "foto2.png",
+      "foto3.png"
+    ];
+
+    function cargarGaleria() {
+      const carta = document.querySelector('.carta');
+      const galeria = document.createElement('div');
+      galeria.className = 'galeria';
+
+      fotos.forEach(ruta => {
+        const img = document.createElement('img');
+        img.src = ruta;
+        galeria.appendChild(img);
+      });
+
+      carta.appendChild(galeria);
+    }
+
+    window.addEventListener('load', cargarGaleria);
+  </script>
+
+</body>
+</html>
